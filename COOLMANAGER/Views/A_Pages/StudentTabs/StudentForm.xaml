@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="COOLMANAGER.Views.StudentForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:COOLMANAGER.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="510" d:DesignWidth="800" Background="#2F3E46">
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" >
+
+            <TextBlock Text="Ученики"
+                       Margin="10"
+                       FontSize="42"
+                       Foreground="#CAD2C5"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Button x:Name="StudentAddB"
+                    Content="Добавить"
+                    Style="{StaticResource addB}" 
+                    Click="StudentAddB_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock  Text="Фильтр" 
+                        FontSize="20" 
+                        Foreground="#CAD2C5"
+                        Margin="10 0"/>
+            <StackPanel Orientation="Horizontal"
+                        Margin="10 0 0 0"
+                        Height="40">
+                <TextBox x:Name="StudentSearchNameTextBox"   
+                         Text="Имя, фамилия, отчество" 
+                         
+                         GotFocus="StudentSearchNameTextBox_GotFocus" 
+                         LostFocus="StudentSearchNameTextBox_LostFocus" 
+                         Style="{StaticResource SearchTB}" 
+                         TextChanged="StudentSearchNameTextBox_TextChanged"
+                         />
+            </StackPanel> 
+        </StackPanel>
+        <Grid Grid.Row="3">
+            <DataGrid x:Name="StudentsDataGreed">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ФИО" Width="*" Binding="{Binding FullName}" />
+                    <DataGridTextColumn Header="Возраст"  Width="*"  Binding="{Binding StudentAge}"/>
+                    <DataGridTextColumn   Width="*" Binding="{Binding Date_and_advert_Type}">
+                        <DataGridTextColumn.Header>
+                            <StackPanel >
+                                <TextBlock Text="Дата/Тип" />
+                                <TextBlock Text="обращения" />
+                            </StackPanel>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Тип заявки" Width="*"  Binding="{Binding request_type}"/>
+                    <DataGridTextColumn Header="Дисциплины"  Width="*" Binding="{Binding student_subjects}"/>
+                    <DataGridTemplateColumn Header="" MinWidth="50" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="50">
+                                    <Border Style="{StaticResource ButtonBorder}">
+                                        <Button Name="EditB" Style="{StaticResource GridB}" 
+                                                Click="EditB_Click"
+                                                ToolTip="Редактировать"
+                                                ToolTipService.InitialShowDelay="1">
+                                            <Image Source="/Images/Icons/editIcon.png" Margin="4" />
+                                        </Button>
+                                    </Border>
+                                    <Border Style="{StaticResource ButtonBorder}">
+                                        <Button Name="DeleteB" Style="{StaticResource GridB}" 
+                                                Background="#f2674b" 
+                                                Click="DeleteB_Click"
+                                                ToolTip="Удалить"
+                                                    ToolTipService.InitialShowDelay="1">
+                                            <Image Source="/Images/Icons/deleteIcon.png"  Margin="4"/>
+                                        </Button>
+                                    </Border>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

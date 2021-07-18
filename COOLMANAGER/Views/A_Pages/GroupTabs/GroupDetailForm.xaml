@@ -1,0 +1,217 @@
+﻿<UserControl x:Class="COOLMANAGER.Views.GroupEditForms.GroupDetailForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:COOLMANAGER.Views.GroupEditForms"
+             mc:Ignorable="d"
+             
+             d:DesignHeight="450" 
+             d:DesignWidth="800" 
+             Background="#354F52"
+             FontSize="20"
+             Foreground="#2F3E46">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Row 0-->
+        <StackPanel Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock x:Name="GroupNameTextBlock"
+                       Text="Group Name"
+                       FontSize="24"
+                       VerticalAlignment="Bottom"
+                       Grid.Column="0" Grid.Row="0"
+                           Foreground="#CAD2C5"/>
+
+                <TextBlock x:Name="GroupStatusTextBlock"
+                       Text="status"
+                       Margin="10 0 0 0"
+                       FontFamily="Segoe UI light" 
+                       VerticalAlignment="Bottom"
+                       Grid.Column="0" Grid.Row="0"
+                       Foreground="#CAD2C5"/>
+            </StackPanel>
+            <TextBlock Text="Группа" 
+                       FontFamily="Segoe UI light"
+                       Grid.Column="0" Grid.Row="0"
+                       Foreground="#CAD2C5"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2">
+            
+            <Button x:Name="AddToGroupB"   
+                Grid.Column="1"
+                Height="40"
+                Background="#52796F"
+                BorderBrush="#CAD2C5"
+                BorderThickness="3"
+                Foreground="#CAD2C5"
+                Width="200" Click="AddToGroupB_Click">
+                <TextBlock Text="Добавить учеников в группу"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center"
+                       FontSize="14" />
+            </Button>
+
+            <Button x:Name="PrintB" 
+                Content="Экспорт в Excel" 
+                Grid.Column="2"
+                Height="40"
+                Background="#52796F"
+                BorderBrush="#CAD2C5"
+                BorderThickness="3"
+                Foreground="#CAD2C5"
+                Margin="10 0 10 0"
+                Width="200" Click="PrintB_Click"/>
+
+        </StackPanel>
+        
+       
+
+        <!-- Row 1 -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Background="#f5f5f5">
+            <TextBlock Margin="10 0"
+                       Text="Преподаватель" 
+                       FontSize="24"
+                       FontFamily="Segoe UI Semibold"
+                Foreground="#2F3E46"/>
+
+            <TextBlock x:Name="TeachersNameTextBlock"
+                           Text="Teachers Name" 
+                       Margin="10 0"
+                       Foreground="#2F3E46"/>
+
+        </StackPanel>
+
+        <DataGrid x:Name="StInsideGroupDG"
+                  Grid.Row="1" 
+                  Grid.Column="1"
+                  Grid.RowSpan="2" 
+                  Grid.ColumnSpan="2"
+                  Margin="10 0 0 10" 
+                  AutoGenerateColumns="False"  
+                  FontSize="14"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО" MinWidth="100"  Binding="{Binding FullName}"/>
+                <DataGridTextColumn Header="Возраст" MinWidth="100" Width="*" Binding="{Binding StudentAge}"/>
+                <DataGridTextColumn Header="Дата / тип обращения" MinWidth="100" Width="*" Binding="{Binding Date_and_advert_Type}"/>
+                <DataGridTextColumn Header="Тип заявки" MinWidth="100" Width="*" Binding="{Binding request_type}"/>
+                <DataGridTextColumn Header="Дисциплины" MinWidth="100" Width="*" Binding="{Binding student_subjects}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Row 3 -->
+        <Border Background="#cccccc" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" CornerRadius="15,15,0,0" >
+
+            <Grid>
+               <TextBlock Text="Расписание"
+                       Foreground="#2F3E46"
+                       Margin="10 10 0 0"
+                          x:Name="Schedule_label"/> 
+            
+            <TextBlock Text="Расписание для этой группы ещё не составленно"
+                       Foreground="#2F3E46"
+                       Margin="10 10 0 0"
+                       HorizontalAlignment="Center"
+                       x:Name="Schedule_empty"/> 
+            </Grid>
+            
+        </Border>
+
+        <!-- Row 4 -->
+        <StackPanel Background="#f5f5f5" Grid.Row="4" Grid.Column="0"
+                    Grid.ColumnSpan="3" 
+                    Grid.RowSpan="2">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="0 5 0 0">
+                <TextBlock Text="С " />
+                <TextBlock x:Name="StartTime" Text="00:00 " />
+                <TextBlock Text="до " />
+                <TextBlock x:Name="EndTime" Text="00:00 " />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        
+                        Margin="0 10 0 10">
+
+                <Border Background="Silver" Height="35" Width="400" CornerRadius="5,5,5,5" >
+
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="Monday" Grid.Column="0" Background="#dbdbdb" Margin="3" CornerRadius="5,5,5,5" >
+                            <TextBlock Text="Пн." 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border x:Name="Tuesday" Grid.Column="1" Background="#dbdbdb" Margin="3" CornerRadius="5,5,5,5" >
+                            <TextBlock Text="Вт." 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border x:Name="Wednesday" Grid.Column="2" Background="#dbdbdb" Margin="3" CornerRadius="5,5,5,5" >
+                            <TextBlock Text="Ср." 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border x:Name="Thursday" Grid.Column="3" Background="#dbdbdb" Margin="3" CornerRadius="5,5,5,5" >
+                            <TextBlock Text="Чт." 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border x:Name="Friday" Grid.Column="4" Background="#dbdbdb" Margin="3" CornerRadius="5,5,5,5" >
+                            <TextBlock Text="Пт." 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border x:Name="Satudrday" Grid.Column="5" Background="#dbdbdb" Margin="3" CornerRadius="5,5,5,5" >
+                            <TextBlock Text="Сб." 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border x:Name="Sunday" Grid.Column="6" Background="#dbdbdb" Margin="3" CornerRadius="5,5,5,5" >
+                            <TextBlock Text="Вс." 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+
+
+                    </Grid>
+
+                </Border>
+
+
+                <!--<Rectangle Fill="Red"  Width="30" Height="30" Stroke="Silver" StrokeThickness="3" />-->
+
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,61 @@
+﻿<Window x:Class="COOLMANAGER.Views.ST_StudentMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:COOLMANAGER.Views"
+        mc:Ignorable="d"
+        Title="ST_StudentMainWindow" 
+        Height="650" Width="1000"
+        WindowStartupLocation="CenterScreen" 
+        Loaded="Window_Loaded"
+        Background="#536066" 
+        ResizeMode="CanResizeWithGrip" 
+        AllowsTransparency="True"
+        WindowStyle="None">
+    <Window.Resources>
+        <Style x:Key="MenuB" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style x:Key="MenuButtonImage" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    >
+            <TextBlock x:Name="NameTextBlock"  
+                       Text="Пользователь"
+                       VerticalAlignment="Center" 
+                       Foreground="#CAD2C5"
+                       FontSize="26"
+                       ToolTip="Выйти из аккаунта"
+                       ToolTipService.InitialShowDelay="1" 
+                       Margin="0 0 10 0"
+                       MouseUp="NameTextBlock_MouseUp"
+                       />
+            <Button x:Name="CloseB"
+                    DockPanel.Dock="Right" 
+                    HorizontalAlignment="Right"  
+                    Style="{StaticResource MenuB}" 
+                    Click="CloseB_Click">
+                <Image Source="/Images/menuBtns/MCloseBtn.png" 
+                       Style="{StaticResource MenuButtonImage}" />
+
+            </Button>
+        </StackPanel>
+        
+
+        <ContentControl x:Name="ContentHolderFrame" Grid.Row="1" />
+    </Grid>
+
+</Window>

@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="COOLMANAGER.Views.A_Pages.LidPage.LidTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:COOLMANAGER.Views.A_Pages.LidPage"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800" 
+             Background="#2F3E46">
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Лиды"
+                       Margin="10"
+                       FontSize="42"
+                       Foreground="#CAD2C5"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Button x:Name="LidAddB"
+                    Content="Добавить"
+                    Click="LidAddB_Click"
+                    Style="{StaticResource addB}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock  Text="Фильтр" 
+                        FontSize="20"
+                        Foreground="#CAD2C5"
+                        Margin="10 0 0 0"/>
+            <StackPanel Orientation="Horizontal"
+                        Margin="10 0 0 0"
+                        Height="40">
+                <TextBox x:Name="LidSearchTB"   
+                         Text="Имя, фамилия, отчество" 
+                         Style="{StaticResource SearchTB}"  GotFocus="LidSearchTB_GotFocus" LostFocus="LidSearchTB_LostFocus" TextChanged="LidSearchTB_TextChanged" />
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="3">
+            <DataGrid x:Name="LidDG" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Binding="{Binding Date_and_advert_Type}">
+                        <DataGridTextColumn.Header>
+                            <StackPanel>
+                                <TextBlock Text="Дата/Тип" />
+                                <TextBlock Text="обращения" />
+                            </StackPanel>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="ФИО" MinWidth="100" Width="*" Binding="{Binding FullName}"/>
+                    <DataGridTextColumn Header="Тип заявки" MinWidth="100" Width="*" Binding="{Binding request_type}"/>
+                    <DataGridTextColumn Header="Возраст" MinWidth="100" Width="*" Binding="{Binding StudentAge}"/>
+                    <DataGridTextColumn Header="Контакты" MinWidth="100" Width="*" Binding="{Binding contact}"/>
+
+                    <DataGridTemplateColumn Header="" MinWidth="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="50">
+                                    <Border Style="{StaticResource ButtonBorder}">
+                                        <Button Name="LidEditB" 
+                                                Style="{StaticResource GridB}" 
+                                                Click="LidEditB_Click"
+                                                ToolTip="Редактировать"
+                                                ToolTipService.InitialShowDelay="1" >
+                                            <Image Source="/Images/Icons/editIcon.png" Margin="4" />
+                                        </Button>
+                                    </Border>
+                                    <Border Style="{StaticResource ButtonBorder}">
+                                        <Button Name="AddToGroupB" 
+                                                Style="{StaticResource GridB}"
+                                                Click="AddToGroupB_Click"
+                                                ToolTip="Добавить в группу"
+                                                ToolTipService.InitialShowDelay="1">
+                                            <Image Source="/Images/Icons/AddToStudentIcon.png"  Margin="4"/>
+                                        </Button>
+                                    </Border>
+                                    <Border Style="{StaticResource ButtonBorder}">
+                                        <Button Name="LidDeleteB" 
+                                                Style="{StaticResource GridB}" 
+                                                Background="#f2674b" 
+                                                Click="LidDeleteB_Click"
+                                                ToolTip="Удалить"
+                                                ToolTipService.InitialShowDelay="1">
+                                            <Image Source="/Images/Icons/deleteIcon.png"  Margin="4"/>
+                                        </Button>
+                                    </Border>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

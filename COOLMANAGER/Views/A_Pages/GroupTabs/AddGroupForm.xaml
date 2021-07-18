@@ -1,0 +1,114 @@
+﻿<Window x:Class="COOLMANAGER.Views.A_Pages.GroupTabs.AddGroupForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:COOLMANAGER.Views.A_Pages.GroupTabs"
+        mc:Ignorable="d"
+        Title="AddGroupForm" Height="325" 
+        Width="485"
+        FontSize="16" 
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <!-- row 0 -->
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Добавление группы"
+                       x:Name="MainLabel"/>
+            <TextBlock x:Name="WarningLabel" Margin="10 0 0 0"
+                       Foreground="Orange"
+                       Text="*заполните все поля для ввода данных"/>
+        </StackPanel>
+
+        <Border Background="Black" Height="2" VerticalAlignment="Bottom" />
+
+        <!-- row 1 -->
+        <TextBox Text="Название группы" 
+                     x:Name="group_name"
+                     FontSize="28"
+                     BorderThickness="0 0 0 1"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Width="436"
+                     GotFocus="group_name_GotFocus" 
+                     LostFocus="group_name_LostFocus" 
+                     Margin="10 10 0 0" Height="40"/>
+        <!-- row 2-->
+          
+        <Grid Margin="10 20 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Предмет" 
+                               VerticalAlignment="Center" />
+            <ComboBox Width="200" 
+                      Margin="20 0 0 0" 
+                      Grid.Column="1" 
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      x:Name="subject"
+                      SelectionChanged="subject_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding name_subject}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="Преподаватель" Grid.Row="1"
+                               VerticalAlignment="Center" />
+            <ComboBox Width="200" 
+                      Margin="20 0 0 0" 
+                      Grid.Column="2" 
+                      Grid.Row="1" 
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      x:Name="teacher">
+            </ComboBox>
+
+            <TextBlock Text="Статус группы" 
+                       Grid.Row="2" 
+                       VerticalAlignment="Center"/>
+            <ComboBox Width="200"
+                      Margin="20 0 0 0" 
+                      Grid.Column="1" 
+                      Grid.Row="2" 
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      x:Name="Status">
+            </ComboBox>
+
+            <TextBlock Text="Тип группы" Grid.Row="3" 
+                       VerticalAlignment="Center"/>
+            <ComboBox Width="200"
+                      Margin="20 0 0 0" 
+                      Grid.Column="1" 
+                      Grid.Row="3" 
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      x:Name="type">
+            </ComboBox>
+        </Grid>
+
+        <!-- row 5 (buttons) -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="CloseB" 
+                    Content="Отменить" 
+                    Width="100"
+                    Margin="10" Click="CloseB_Click"/>
+            <Button x:Name="SRegistrateB" 
+                    Content="Добавить" 
+                    Width="100"
+                    Margin="10" 
+                    Click="GRegistrateB_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
